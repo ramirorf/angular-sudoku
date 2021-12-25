@@ -1,0 +1,19 @@
+
+.tabla {
+    display: table;
+    width: 100px;
+    table-layout: fixed;
+}
+
+.fila {
+    display: table-row;
+    height: 40px;
+}
+
+.celda {
+    display: table-cell;
+    background-color: greenyellow;
+    border-style: solid;
+    border-width: thin;
+    width: 40px;
+}
