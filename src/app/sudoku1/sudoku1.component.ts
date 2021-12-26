@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Sudoku } from './modelo/Sudoku';
+import { SUDOKU_MOCK } from './modelo/mock-sudoku';
+
+import { Sudoku } from './modelo/sudoku';
 
 @Component({
   selector: 'app-sudoku1',
@@ -10,34 +12,11 @@ import { Sudoku } from './modelo/Sudoku';
 
 export class Sudoku1Component implements OnInit {
 
-  sudoku : Sudoku = { filas : [ 
-    
-    [1, 2, 3, 4, 5, 6, 7, 8, 9] , 
-    
-    [1, 2, 3, 4, 5, 6, 7, 8, 9] , 
-    
-    [1, 2, 3, 4, 5, 6, 7, 8, 9] , 
-
-    [1, 2, 3, 4, 5, 6, 7, 8, 9] , 
-    
-    [1, 2, 3, 4, 5, 6, 7, 8, 9] , 
-    
-    [1, 2, 3, 4, 5, 6, 7, 8, 9] , 
-
-    [1, 2, 3, 4, 5, 6, 7, 8, 9] , 
-    
-    [1, 2, 3, 4, 5, 6, 7, 8, 9] , 
-    
-    [1, 2, 3, 4, 5, 6, 7, 8, 9] 
-
-  ] };
+  sudoku : Sudoku = SUDOKU_MOCK;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
-
-
 
 }

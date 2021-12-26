@@ -1,4 +1,5 @@
+import { SudokuCelda } from "./sudoku-celda";
 
 export interface Sudoku {
-    filas: number[][];
+    celdas: SudokuCelda[][];
 }

@@ -3,6 +3,7 @@
     display: table;
     width: 100px;
     table-layout: fixed;
+    word-wrap: break-word;
 }
 
 .fila {
