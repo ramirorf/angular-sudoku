@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SUDOKU_MOCK } from './modelo/mock-sudoku';
+import { SUDOKU_MOCK, SUDOKU_MOK1_SDK } from './modelo/mock-sudoku';
 
 import { Sudoku } from './modelo/sudoku';
+import { SudokuServiceService } from './servicio/sudoku-service.service';
 
 @Component({
   selector: 'app-sudoku1',
@@ -14,7 +15,9 @@ export class Sudoku1Component implements OnInit {
 
   sudoku : Sudoku = SUDOKU_MOCK;
 
-  constructor() { }
+  constructor(private sudokuServiceService : SudokuServiceService) { 
+    this.sudoku = this.sudokuServiceService.newFromSDK(SUDOKU_MOK1_SDK);
+  }
 
   ngOnInit(): void {
   }
