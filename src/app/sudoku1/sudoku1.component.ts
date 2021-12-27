@@ -13,13 +13,27 @@ import { SudokuServiceService } from './servicio/sudoku-service.service';
 
 export class Sudoku1Component implements OnInit {
 
-  sudoku : Sudoku = SUDOKU_MOCK;
+  sudokuArray : Sudoku[] = [];
+  paso : number = 0;
+  sudoku : Sudoku;
 
-  constructor(private sudokuServiceService : SudokuServiceService) { 
-    this.sudoku = this.sudokuServiceService.newFromSDK(SUDOKU_MOK1_SDK);
+  constructor(private sudokuServiceService : SudokuServiceService) {
+    this.sudoku =  this.sudokuServiceService.newFromSDK(SUDOKU_MOK1_SDK);
+    this.sudokuArray.push(this.sudoku);
+    this.sudokuArray.push(SUDOKU_MOCK);
   }
 
   ngOnInit(): void {
+  }
+
+  onAnteriorPaso(): void {
+    this.paso--;
+    this.sudoku = this.sudokuArray[this.paso];
+  }
+
+  onSiguientePaso(): void {
+    this.paso++;
+    this.sudoku = this.sudokuArray[this.paso];
   }
 
 }

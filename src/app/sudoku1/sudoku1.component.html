@@ -1,5 +1,6 @@
 
 <h3>Sudoku 1</h3>
+<h2>{{paso}}</h2>
 
 <div class="tabla">
     <div class="fila" *ngFor="let fila of sudoku.celdas">
@@ -8,3 +9,5 @@
         </div>
     </div>
 </div>
+<button (click)="onAnteriorPaso()">Anterior paso</button>
+<button (click)="onSiguientePaso()">Siguiente paso</button>
