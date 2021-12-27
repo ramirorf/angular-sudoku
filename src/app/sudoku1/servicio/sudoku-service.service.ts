@@ -7,7 +7,7 @@ import { SudokuCelda, SUDOKU_ALL_VALUES } from '../modelo/sudoku-celda';
 })
 
 export class SudokuServiceService {
-
+  
   constructor() { }
 
   newFromSDK(sdk:string) : Sudoku {
@@ -30,5 +30,32 @@ export class SudokuServiceService {
     let sudoku : Sudoku = { celdas : celdaTable };
     return sudoku; 
   }  
+
+  siguiente(sudoku: Sudoku): Sudoku {
+    let sudokuNext : Sudoku = this.copiarSudoku(sudoku);
+    return sudokuNext;
+  }
+
+  copiarSudoku(sudokuSrc: Sudoku): Sudoku {
+
+    // copiar el array de celdas
+    let celdas: SudokuCelda[][] = [];
+
+    for(var i=0; i!=sudokuSrc.celdas.length; i++) {
+      celdas.push([]);
+      for(var j=0; j!=sudokuSrc.celdas[i].length; j++) {
+        celdas[i].push( this.copiarCelda(sudokuSrc.celdas[i][j]) );
+      }
+    }
+
+    // contruir el sudoku en función del array de celdas
+    let sudoku : Sudoku = { celdas : celdas };
+    return sudoku;
+  }
+
+  copiarCelda(sudokuCeldaSrc: SudokuCelda): SudokuCelda {
+    let sudokuCelda : SudokuCelda = { posibles : Object.assign([], sudokuCeldaSrc.posibles) };
+    return sudokuCelda;
+  }
 
 }

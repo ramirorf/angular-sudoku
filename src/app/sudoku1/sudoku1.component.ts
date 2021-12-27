@@ -20,20 +20,26 @@ export class Sudoku1Component implements OnInit {
   constructor(private sudokuServiceService : SudokuServiceService) {
     this.sudoku =  this.sudokuServiceService.newFromSDK(SUDOKU_MOK1_SDK);
     this.sudokuArray.push(this.sudoku);
-    this.sudokuArray.push(SUDOKU_MOCK);
-  }
+ }
 
   ngOnInit(): void {
   }
 
   onAnteriorPaso(): void {
-    this.paso--;
-    this.sudoku = this.sudokuArray[this.paso];
+    if (this.paso > 0) {
+      this.paso--;
+      this.sudoku = this.sudokuArray[this.paso];
+    }
   }
 
   onSiguientePaso(): void {
     this.paso++;
-    this.sudoku = this.sudokuArray[this.paso];
+    if (this.paso < this.sudokuArray.length) {
+      this.sudoku = this.sudokuArray[this.paso];  
+    } else {
+      this.sudoku = this.sudokuServiceService.siguiente(this.sudoku);  
+      this.sudokuArray.push(this.sudoku);
+    }
   }
 
 }
