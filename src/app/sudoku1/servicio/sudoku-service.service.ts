@@ -33,11 +33,12 @@ export class SudokuServiceService {
 
   siguiente(sudoku: Sudoku): Sudoku {
     let sudokuNext : Sudoku = this.copiarSudoku(sudoku);
-    this.simplificar(sudokuNext);
+    this.eliminarPosiblesFijadosEnGrupo(sudokuNext);
+    this.fijarUnicoValorPosibleEnGrupo(sudokuNext);
     return sudokuNext;
   }
 
-  simplificar(sudoku: Sudoku): void {
+  eliminarPosiblesFijadosEnGrupo(sudoku: Sudoku): void {
     // eliminar posibles  de filas, columnas y cuadrados
     for(var i=0; i!=sudoku.celdas.length; i++) {
       for(var j=0; j!=sudoku.celdas[i].length; j++) {
@@ -63,7 +64,9 @@ export class SudokuServiceService {
         }
       }
     }
+  }
 
+  fijarUnicoValorPosibleEnGrupo(sudoku: Sudoku): void {
     for(var i=0; i!=sudoku.celdas.length; i++) {
       for(var j=0; j!=sudoku.celdas[i].length; j++) {
         // simplificar la fila
@@ -76,7 +79,6 @@ export class SudokuServiceService {
           let celdasColumna : SudokuCelda[] = this.getColumna(sudoku,j);
           this.simplificarGrupo(celdasColumna);
         }
-
         // simplificar el cuadrado
         {
           let celdasCuadrado : SudokuCelda[] = this.getCuadrado(sudoku,i,j);
