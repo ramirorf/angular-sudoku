@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JuegoVidaComponent implements OnInit {
 
-  TABLERO_SIZE : number = 10; 
+  TABLERO_SIZE : number = 100; 
 
   juegoVidaTablero : boolean[][] = [];
 

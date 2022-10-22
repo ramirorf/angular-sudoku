@@ -8,20 +8,18 @@
 
 .fila {
     display: table-row;
-    height: 40px;
+    height: 4px;
 }
 
 .celda-muerta {
     display: table-cell;
-    border-style: solid;
-    border-width: thin;
-    width: 40px;
+    border-style: none;
+    width: 4px;
 }
 
 .celda-viva {
     background-color: black;
     display: table-cell;
-    border-style: solid;
-    border-width: thin;
-    width: 40px;
+    border-style: none;
+    width: 4px;
 }
