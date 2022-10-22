@@ -1,0 +1,27 @@
+.tabla {
+    display: table;
+    width: 100px;
+    table-layout: fixed;
+    word-wrap: break-word;
+    padding-bottom: 2em;
+}
+
+.fila {
+    display: table-row;
+    height: 40px;
+}
+
+.celda-muerta {
+    display: table-cell;
+    border-style: solid;
+    border-width: thin;
+    width: 40px;
+}
+
+.celda-viva {
+    background-color: black;
+    display: table-cell;
+    border-style: solid;
+    border-width: thin;
+    width: 40px;
+}

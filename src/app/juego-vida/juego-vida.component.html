@@ -1,1 +1,13 @@
-<p>juego-vida works!</p>
+
+<h3>Juego de la vida paso {{paso}}</h3>
+
+<div class="tabla">
+    <div class="fila" *ngFor="let fila of juegoVidaTablero">
+        <div *ngFor="let elemento of fila" [ngClass]="{'celda-muerta' : elemento == false , 'celda-viva': elemento == true}">
+            
+        </div>
+    </div>
+</div>
+
+<button (click)="onAnteriorPaso()">Anterior paso</button>
+<button (click)="onSiguientePaso()">Siguiente paso</button>
