@@ -11,12 +11,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { JuegoVidaComponent } from './juego-vida/juego-vida.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Sudoku1Component,
-    NasaApodComponent
+    NasaApodComponent,
+    JuegoVidaComponent
   ],
   imports: [
     BrowserModule,
