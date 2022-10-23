@@ -1,5 +1,6 @@
 
 <h3>Juego de la vida paso {{paso}}</h3>
+<h3>tiempo del último paso {{tiempoUltimoPaso}} ms</h3>
 
 <div class="tabla">
     <div class="fila" *ngFor="let fila of juegoVidaTablero">
@@ -10,3 +11,4 @@
 </div>
 
 <button (click)="onSiguientePaso()">Siguiente paso</button>
+<button (click)="onSiguientePasoAutomatico()">Pasos automaticos</button>

@@ -12,6 +12,7 @@ export class JuegoVidaComponent implements OnInit {
   juegoVidaTablero : boolean[][] = [];
 
   paso : number = 0;
+  tiempoUltimoPaso: number = 0;
 
   constructor() { }
 
@@ -20,8 +21,18 @@ export class JuegoVidaComponent implements OnInit {
   }
 
   onSiguientePaso(): void {
+    let pasoInicio : number = performance.now();
     this.juegoVidaTablero = this.actualizarTablero(this.juegoVidaTablero, this.TABLERO_SIZE);
+    let pasoFin : number = performance.now();
+    this.tiempoUltimoPaso = Math.round((pasoFin-pasoInicio) * 100) / 100;
     this.paso++;
+  }
+
+  onSiguientePasoAutomatico():void{
+    setTimeout(() => {
+      this.onSiguientePaso();
+      this.onSiguientePasoAutomatico();
+    }, 100);  
   }
 
   intTablero(size : number) {
