@@ -16,7 +16,7 @@ export class JuegoVidaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-      this.juegoVidaTablero = this.intTablero(this.TABLERO_SIZE);
+      this.juegoVidaTablero = this.intTableroPrimerCañon(this.TABLERO_SIZE);
   }
 
   onSiguientePaso(): void {
@@ -25,14 +25,51 @@ export class JuegoVidaComponent implements OnInit {
   }
 
   intTablero(size : number) {
-    let tablero : boolean[][] = [];
+    let tablero = this.intTableroVacio(size);
     for(let i=0;i<size;i++){
-      let fila : boolean [] = [];
       for(let j=0;j<size;j++) {
-        fila.push((i+j)%2 == 1);
+        tablero[i][j]=((i+j)%2 == 1);
       } 
-      tablero.push(fila);
     } 
+    return tablero;
+  }
+
+  intTableroPrimerCañon(size : number) {
+    let tablero = this.intTableroVacio(size);
+    tablero[4][0] = true;
+    tablero[5][0] = true;
+    tablero[4][10] = true;
+    tablero[5][10] = true;
+    tablero[6][10] = true;
+    tablero[3][11] = true;
+    tablero[7][11] = true;
+    tablero[2][12] = true;
+    tablero[8][12] = true;
+    tablero[2][13] = true;
+    tablero[8][13] = true;
+    tablero[5][14] = true;
+    tablero[3][15] = true;
+    tablero[7][15] = true;
+    tablero[4][16] = true;
+    tablero[5][16] = true;
+    tablero[6][16] = true;
+    tablero[5][17] = true;
+    tablero[2][20] = true;
+    tablero[3][20] = true;
+    tablero[4][20] = true;
+    tablero[2][21] = true;
+    tablero[3][21] = true;
+    tablero[4][21] = true;
+    tablero[1][22] = true;
+    tablero[5][22] = true;
+    tablero[0][24] = true;
+    tablero[1][24] = true;
+    tablero[5][24] = true;
+    tablero[6][24] = true;
+    tablero[2][34] = true;
+    tablero[3][34] = true;
+    tablero[2][35] = true;
+    tablero[3][35] = true;
     return tablero;
   }
 
