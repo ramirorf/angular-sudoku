@@ -70,6 +70,9 @@ export class JuegoVidaComponent implements OnInit {
     tablero[3][34] = true;
     tablero[2][35] = true;
     tablero[3][35] = true;
+
+    tablero[80][40] = true;
+    tablero[81][40] = true;
     return tablero;
   }
 
@@ -101,9 +104,9 @@ export class JuegoVidaComponent implements OnInit {
 
   getFilasAlrededorVivas(juegoVidaTablero: boolean[][], size: number, x: number, y:number) {
     let filasAlrededorVivas = 0;
-    for(let i=x-1;i<x+1;i++)
-    for(let j=y-1;j<y+1;j++) {
-      if(i>0 && i<size && j>0 && j<size && juegoVidaTablero[i][j]) {
+    for(let i=x-1;i<=x+1;i++)
+    for(let j=y-1;j<=y+1;j++) {
+      if(i>0 && i<size && j>0 && j<size && !(i==x && j==y) && juegoVidaTablero[i][j]) {
         filasAlrededorVivas++;
       }
     }
