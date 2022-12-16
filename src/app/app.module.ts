@@ -12,13 +12,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { JuegoVidaComponent } from './juego-vida/juego-vida.component';
+import { SortComponent } from './sort/sort.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Sudoku1Component,
     NasaApodComponent,
-    JuegoVidaComponent
+    JuegoVidaComponent,
+    SortComponent
   ],
   imports: [
     BrowserModule,
