@@ -4,8 +4,10 @@
     {{valuesString}}
 </div>
 
-<div>
-    <p>Colección ordenada</p>
-    {{valuesSortedString}}
+<div *ngFor="let sortResult of sortResults">
+    <div>
+        <p>Colección ordenada ({{sortResult.getDescription()}})</p>
+        <p>tiempo ({{sortResult.getTime()}})</p>
+        {{sortResult.getValues()}}
+    </div>
 </div>
-
