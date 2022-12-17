@@ -13,33 +13,41 @@ import { SortResult } from './modelo/sortResult';
   styleUrls: ['./sort.component.css']
 })
 
+
+
 export class SortComponent implements OnInit {
+
+  readonly SIZE = 20;
+  readonly MAX_VALUE = 1000;
 
   sortResults : SortResult[];
   values : Collection<number>;
   valuesString : string;
 
   constructor(private sortCollectionService : SortCollectionService) { 
-    const SIZE = 10;
-    const MAX_VALUE = 100;
 
-    let valuesArray : number[] = Array.from({length: SIZE}, () => Math.floor(Math.random() * MAX_VALUE));
+    let valuesArray : number[] = Array.from({length: this.SIZE}, () => Math.floor(Math.random() *this.MAX_VALUE));
 
     this.values = new CollectionArrays<number>(Object.assign([], valuesArray));
     this.valuesString = this.values.getAll();
 
+    type SortRutine = {
+      name : string,
+      method: (collection : Collection<number>) => void
+    };
+
+    let sortRutines : SortRutine[] = [
+      {name : "bubble", method : sortCollectionService.bubble},
+      {name : "selection", method : sortCollectionService.selection},
+    ];
+
     this.sortResults = [];
-    this.sortResults.push( 
-      SortComponent.sort( 
-          sortCollectionService.bubble , 
-          this.values.clone() , 
-          "bubble") );
-          
-    this.sortResults.push( 
-      SortComponent.sort( 
-          sortCollectionService.selection , 
-          this.values.clone() , 
-          "selection") );
+    sortRutines.forEach( sortRutine => {
+      this.sortResults.push(SortComponent.sort( 
+        sortRutine.method , 
+        this.values.clone() , 
+        sortRutine.name));
+    })
   }
 
   ngOnInit(): void {

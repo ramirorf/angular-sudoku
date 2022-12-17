@@ -1,13 +1,23 @@
 
 <div>
-    <p>Colección aleatoria</p>
-    {{valuesString}}
+    <p>Colección aleatoria ({{valuesString}})</p>
+    <p>Tamaño {{SIZE}}</p>
+    <p>Max value {{MAX_VALUE}}</p>    
 </div>
 
-<div *ngFor="let sortResult of sortResults">
-    <div>
-        <p>Colección ordenada ({{sortResult.getDescription()}})</p>
-        <p>tiempo ({{sortResult.getTime()}})</p>
-        {{sortResult.getValues()}}
-    </div>
-</div>
+<table id="result-sort">
+    <tr>
+        <th>Descripcion</th>
+        <th>tiempo</th>
+        <th>values</th>
+    </tr>
+    <tr *ngFor="let sortResult of sortResults">
+        <td>{{sortResult.getDescription()}}</td>
+        <td>{{sortResult.getTime()}}</td>
+        <td>{{sortResult.getValues()}}</td>
+    </tr>
+</table>
+
+
+
+
