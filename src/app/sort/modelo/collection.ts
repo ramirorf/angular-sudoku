@@ -9,4 +9,6 @@ export interface Collection <T> {
 
     getAll: () => string;
 
+    clone: () => Collection<T>;
+
 }

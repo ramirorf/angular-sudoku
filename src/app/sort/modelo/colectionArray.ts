@@ -26,4 +26,8 @@ export class CollectionArrays<T> implements Collection<T> {
         return this.values.toString();
     }
 
+    clone () {
+        return  new CollectionArrays<T>(Object.assign([], this.values));
+    }
+
 }

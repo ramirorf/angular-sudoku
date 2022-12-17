@@ -32,15 +32,14 @@ export class SortComponent implements OnInit {
     this.sortResults.push( 
       SortComponent.sort( 
           sortCollectionService.bubble , 
-          new CollectionArrays<number>(Object.assign([], valuesArray)
-      ), 
-      "bubble") );
+          this.values.clone() , 
+          "bubble") );
+          
     this.sortResults.push( 
       SortComponent.sort( 
           sortCollectionService.selection , 
-          new CollectionArrays<number>(Object.assign([], valuesArray)
-      ), 
-      "selection") )
+          this.values.clone() , 
+          "selection") );
   }
 
   ngOnInit(): void {
