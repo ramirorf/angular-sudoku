@@ -21,6 +21,25 @@ export class SortCollectionService {
         }
     }
 
+    bubbleImproved<T>(collection: Collection<T>): void {
+        let swapCount;
+        for (let k = 0; k < collection.size(); k++) {
+            swapCount=0;
+            for (let i = 0; i < collection.size()-1; i++) {
+                if (collection.get(i) > collection.get(i+1)) {
+                    let value = collection.get(i);
+                    collection.set(i, collection.get(i+1));
+                    collection.set(i+1, value);
+
+                    swapCount++;
+                }
+            }
+            if ( swapCount==0) {
+                break;
+            }
+        }
+    }
+
     selection<T>(collection: Collection<T>): void {
         for (let i = 0; i < collection.size(); i++) { 
             let min_index = SortCollectionService.getMin(collection, i)
