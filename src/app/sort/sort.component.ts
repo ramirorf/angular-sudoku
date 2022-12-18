@@ -30,13 +30,14 @@ export class SortComponent implements OnInit {
     // lista de rutinas de ordenación 
     type SortRutine = {
       name : string,
-      method: (collection : Collection<number>) => void
+      method: (collection : Collection<number>) => Collection<number>
     };
 
     let sortRutines : SortRutine[] = [
       {name : "bubble", method : sortCollectionService.bubble},
       {name : "bubbleImproved", method : sortCollectionService.bubbleImproved},
       {name : "selection", method : sortCollectionService.selection},
+      {name : "insertion", method : sortCollectionService.insertion},
     ];
 
     // ejecutar las ordenaciones y tomar tiempos
@@ -52,13 +53,13 @@ export class SortComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  static sort( sortMethod : (collection : Collection<number>) => void, values : Collection<number>, description: string) {
+  static sort( sortMethod : (collection : Collection<number>) => Collection<number>, values : Collection<number>, description: string) {
     const inicio : number = performance.now();
-    sortMethod(values);
+    const valuesSorted = sortMethod(values);
     const fin : number = performance.now();
     const tiempo = Math.round((fin-inicio) * 100) / 100;
 
-    return new SortResult(description, values.getAll(), tiempo);
+    return new SortResult(description, valuesSorted.getAll(), tiempo);
   }
 
 }
