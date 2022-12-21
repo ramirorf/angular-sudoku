@@ -13,7 +13,7 @@ import { SortResult } from './modelo/sortResult';
 
 export class SortComponent implements OnInit {
 
-  readonly SIZE = 200;
+  readonly SIZE = 500;
   readonly MAX_VALUE = 10_000;
 
   sortResults : SortResult[];
@@ -38,6 +38,7 @@ export class SortComponent implements OnInit {
       {name : "bubbleImproved", method : sortCollectionService.bubbleImproved},
       {name : "selection", method : sortCollectionService.selection},
       {name : "insertion", method : sortCollectionService.insertion},
+      {name : "mergeSort", method : sortCollectionService.mergeSort}
     ];
 
     // ejecutar las ordenaciones y tomar tiempos
