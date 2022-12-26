@@ -104,8 +104,63 @@ export class SortCollectionService {
         return collectionSorted; 
     }
  
-    quickSort<T>(collection: Collection<T>): Collection<T> {
-        return collection;
+    public static quickSort<T>(collection: Collection<T>): Collection<T> {
+
+        // si tiene menos de 2 elementos el array está ordenado
+        if ( collection.size() < 2 ) {
+            return collection;
+        }
+
+        // elección del pivote
+        const pivote : T = SortCollectionService.getQuickSortPivote(collection);
+
+        // construir subcolecciones
+        let arrayLeft : T[] = [];
+        let arrayRight : T[] = [];
+        let contador : number = 0;
+        for(let i=0 ;i!= collection.size(); i++) {
+            const current : T = collection.get(i);
+            if (current < pivote) {
+                arrayLeft.push(current);
+            }  else if (current > pivote) {
+                arrayRight.push(current);
+            } else {
+                contador++;
+            }
+        }
+
+        // reordenar la subcolecciones
+        const collectionLeft = new CollectionArrays(arrayLeft);
+        console.log("left -> " + collectionLeft.getAll())
+
+        const collectionRight = new CollectionArrays(arrayRight);
+        console.log("right -> " + collectionRight.getAll())
+
+        const collectionLeftQuickSorted = SortCollectionService.quickSort(new CollectionArrays(arrayLeft));
+        const collectionRightQuickSorted = SortCollectionService.quickSort(new CollectionArrays(arrayRight));
+
+        // mezclar la colección
+        let arraySorted : T[] = [];
+        for(let i=0; i!= collectionLeftQuickSorted.size(); i++) {
+            arraySorted.push(collectionLeftQuickSorted.get(i))
+        }
+        for(let i=0; i!= contador; i++) {
+            arraySorted.push(pivote)
+        }
+        for(let i=0; i!= collectionRightQuickSorted.size(); i++) {
+            arraySorted.push(collectionRightQuickSorted.get(i))
+        }
+
+        // retornar el array ordenado
+        const collectionQuickSorted = new CollectionArrays(arraySorted);
+        return collectionQuickSorted;
+    }
+
+    private static getQuickSortPivote<T>(collection: Collection<T>) : T {
+        if (collection.size() <= 0) {
+            throw new Error('No se puede obtener el pivote de una lista vacía.');
+        }
+        return collection.get(collection.size()-1);
     }
 
     // métodos auxiliares

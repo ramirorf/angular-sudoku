@@ -38,7 +38,8 @@ export class SortComponent implements OnInit {
       {name : "bubbleImproved", method : sortCollectionService.bubbleImproved},
       {name : "selection", method : sortCollectionService.selection},
       {name : "insertion", method : sortCollectionService.insertion},
-      {name : "mergeSort", method : sortCollectionService.mergeSort}
+      {name : "mergeSort", method : sortCollectionService.mergeSort},
+      {name : "quickSort", method : SortCollectionService.quickSort}
     ];
 
     // ejecutar las ordenaciones y tomar tiempos
