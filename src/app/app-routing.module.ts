@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FractalesComponent } from './fractales/fractales.component';
 import { JuegoVidaComponent } from './juego-vida/juego-vida.component';
 import { NasaApodComponent } from './nasa-apod/nasa-apod.component';
 import { SortComponent } from './sort/sort.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'nasa-apod', component: NasaApodComponent },
   { path: 'juego-vida', component: JuegoVidaComponent },
   { path: 'sort', component: SortComponent },
+  { path: 'fractales', component: FractalesComponent }
 ];
 
 @NgModule({
