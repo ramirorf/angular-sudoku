@@ -18,7 +18,7 @@ export class FractalesComponent implements OnInit {
   }
 
   onSiguientePaso(): void {
-    this.drawLine();
+    this.drawTriangleAngle(100);
   }
 
   // métodos de dibujo
@@ -31,6 +31,57 @@ export class FractalesComponent implements OnInit {
     ctx.stroke();
   }
 
+  drawTriangle() {
+    // dibujar línea
+    let ctx = this.getContext2D();
+    ctx.moveTo(-100, 0);
+    ctx.lineTo(100, 0);
+    ctx.lineTo(0, -200);
+    ctx.lineTo(-100, 0);
+    ctx.stroke();
+  }
+
+  drawTriangleAngle(side: number) {
+    // inicializar
+    let ctx = this.getContext2D();
+    let x=-side/2,y=0;
+    ctx.moveTo(x, y);
+    console.log("x = "+x+" y = "+y);
+
+    // dibujar línea
+    let angle=0;
+    x+=Math.cos(angle*Math.PI/180)*side;
+    y+=Math.sin(angle*Math.PI/180)*side;
+    ctx.lineTo(x,-y);
+    console.log("x = "+x+" y = "+y);
+
+    // dibujar línea
+    angle+=180-60;
+    x+=Math.cos(angle*Math.PI/180)*side;
+    y+=Math.sin(angle*Math.PI/180)*side;
+    //x=0;
+    //y=100;
+    ctx.lineTo(x,-y);
+    console.log("x = "+x+" y = "+y+" angle " + angle);
+
+    // dibujar línea
+    angle+=180-60;
+    x+=Math.cos(angle*Math.PI/180)*side;
+    y+=Math.sin(angle*Math.PI/180)*side;
+    //x=0;
+    //y=100;
+    ctx.lineTo(x,-y);
+    console.log("x = "+x+" y = "+y+" angle " + angle);
+
+    /*
+    ctx.moveTo(-100, 0);
+    ctx.lineTo(100, 0);
+    ctx.lineTo(0, -200);
+    ctx.lineTo(-100, 0);
+    */
+    ctx.stroke();
+  }
+
   // auxiliares
 
   private getContext2D () {
@@ -40,8 +91,9 @@ export class FractalesComponent implements OnInit {
       this.context2D = canvas.getContext('2d');
       if (this.context2D) {
         this.context2D.translate(this.width/2, this.height/2);
-      } 
-      throw new Error('No canvas available');
+      } else {
+        throw new Error('No canvas available');
+      }   
     }
     return this.context2D;
   }
