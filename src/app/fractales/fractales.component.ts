@@ -22,7 +22,7 @@ export class FractalesComponent implements OnInit {
 
   onSiguientePaso(): void {
     //this.drawTriangleAngle(100);
-    this.drawKorn(100,1);
+    this.drawKorn(100,3);
   }
 
   onLimpiar(): void {
@@ -46,14 +46,27 @@ export class FractalesComponent implements OnInit {
 
   drawKorn(side: number, n : number) {
     const plotter = new Plotter(this.getContext2D());
-
     plotter.setPosition(this.height/2, this.width/2);
-    plotter.draw(side,0);
-    plotter.draw(side,60);
-    plotter.draw(side,-60*2);
-    plotter.draw(side,60);
-
+    this.drawKornInternal(plotter, side, n);
     this.getContext2D().stroke();
+  }
+
+  drawKornInternal(plotter: Plotter, side: number, n : number) {
+    if ( n == 1) {
+      plotter.draw(side,0);
+      plotter.draw(side,60);
+      plotter.draw(side,-60*2);
+      plotter.draw(side,60);
+    } else {
+      const sizeEfective = side/n;
+      this.drawKornInternal(plotter, sizeEfective, n-1);
+      plotter.increaseAngle(60);
+      this.drawKornInternal(plotter, sizeEfective, n-1);
+      plotter.increaseAngle(-60*2);
+      this.drawKornInternal(plotter, sizeEfective, n-1);
+      plotter.increaseAngle(60);
+      this.drawKornInternal(plotter, sizeEfective, n-1);
+    }
   }
 
   // ------------

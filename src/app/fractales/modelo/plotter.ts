@@ -28,4 +28,8 @@ export class Plotter {
         console.log("line to x = "+this.x+" y = "+this.y + " angle = " + this.angle);
     }
     
-}
+    public increaseAngle(angleDegrees: number) {
+        this.angle+=angleDegrees;
+    }
+  
+ }
