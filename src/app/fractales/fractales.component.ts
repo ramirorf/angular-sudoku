@@ -14,15 +14,19 @@ export class FractalesComponent implements OnInit {
   width : number = 1000;
   context2D : CanvasRenderingContext2D | null = null;
 
-  constructor() { 
+  nivel : number;
+
+  constructor() {
+    this.nivel=1; 
   }
 
   ngOnInit(): void {
   }
 
   onSiguientePaso(): void {
+    this.clear();
     //this.drawTriangleAngle(100);
-    this.drawKorn(100,3);
+    this.drawKorn(100,this.nivel++);
   }
 
   onLimpiar(): void {
@@ -58,7 +62,7 @@ export class FractalesComponent implements OnInit {
       plotter.draw(side,-60*2);
       plotter.draw(side,60);
     } else {
-      const sizeEfective = side/n;
+      const sizeEfective = side/3;
       this.drawKornInternal(plotter, sizeEfective, n-1);
       plotter.increaseAngle(60);
       this.drawKornInternal(plotter, sizeEfective, n-1);
