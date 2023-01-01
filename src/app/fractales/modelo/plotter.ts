@@ -17,14 +17,15 @@ export class Plotter {
         this.x=x;
         this.y=y;
         this.context2D.moveTo(x, y);
+        console.log(" position x = "+this.x+" y = "+this.y);
     }
 
     public draw( module: number, angleDegrees: number) {
         this.angle+=angleDegrees;
         this.x+=Math.cos(this.angle*Math.PI/180)*module;
-        this.y+=Math.sin(this.angle*Math.PI/180)*module;
-        this.context2D.lineTo(this.x,-this.y);
-        console.log("x = "+this.x+" y = "+this.y);
+        this.y-=Math.sin(this.angle*Math.PI/180)*module;
+        this.context2D.lineTo(this.x, this.y);
+        console.log("line to x = "+this.x+" y = "+this.y + " angle = " + this.angle);
     }
     
 }
