@@ -12,7 +12,8 @@ export class FractalesComponent implements OnInit {
 
   height : number = 1000;
   width : number = 1000;
-  context2D : CanvasRenderingContext2D | null = null;
+
+  @ViewChild ('canvas', {static : true}) myCanvas! : ElementRef;
 
   nivel : number;
 
@@ -25,7 +26,6 @@ export class FractalesComponent implements OnInit {
 
   onSiguientePaso(): void {
     this.clear();
-    //this.drawTriangleAngle(100);
     this.drawKorn(this.width,this.nivel++);
   }
 
@@ -50,9 +50,12 @@ export class FractalesComponent implements OnInit {
   }
 
   drawKorn(side: number, n : number) {
+    this.getContext2D().beginPath();
+
     const plotter = new Plotter(this.getContext2D());
     plotter.setPosition(0, this.width/2);
     this.drawKornInternal(plotter, side, n);
+    
     this.getContext2D().stroke();
   }
 
@@ -84,15 +87,12 @@ export class FractalesComponent implements OnInit {
   
   // singleton del contexto 2D del canvas
   private getContext2D () {
-    if ( !this.context2D ) {
-      // obtener el contexto de dibujo 2d del canvas
-      let canvas = document.getElementById('fractal-canvas') as HTMLCanvasElement;
-      this.context2D = canvas.getContext('2d');
-      if (!this.context2D) {
-        throw new Error('No canvas available');
-      }   
+    const canvas : HTMLCanvasElement = this.myCanvas.nativeElement;
+    const context = canvas.getContext('2d');
+    if ( context ) {
+      return context;
     }
-    return this.context2D;
+    throw new Error('No canvas available');
   }
 
 }
