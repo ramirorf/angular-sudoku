@@ -10,8 +10,8 @@ import { Plotter } from './modelo/plotter';
 })
 export class FractalesComponent implements OnInit {
 
-  height : number = 1000;
-  width : number = 1000;
+  height : number = 500;
+  width : number = 800;
 
   @ViewChild ('canvas', {static : true}) myCanvas! : ElementRef;
 
@@ -40,23 +40,20 @@ export class FractalesComponent implements OnInit {
 
   drawTriangleAngle(side: number) {
     const plotter = new Plotter(this.getContext2D());
-
     plotter.setPosition(this.height/2, this.width/2);
+    plotter.start();
     plotter.draw(side,0);
     plotter.draw(side,180-60);
     plotter.draw(side,180-60);
-
-    this.getContext2D().stroke();
+    plotter.stop();
   }
 
   drawKorn(side: number, n : number) {
-    this.getContext2D().beginPath();
-
     const plotter = new Plotter(this.getContext2D());
+    plotter.start();
     plotter.setPosition(0, this.width/2);
     this.drawKornInternal(plotter, side, n);
-    
-    this.getContext2D().stroke();
+    plotter.stop();
   }
 
   drawKornInternal(plotter: Plotter, side: number, n : number) {

@@ -24,6 +24,14 @@ export class Plotter {
         }
     }
 
+    public start() {
+        this.context2D.beginPath();
+    }
+
+    public stop() {
+        this.context2D.stroke();
+    }
+  
     public draw( module: number, angleDegrees: number ) {
         this.angle+=angleDegrees;
         this.x+=Math.cos(this.angle*Math.PI/180)*module;
