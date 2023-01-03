@@ -21,7 +21,7 @@ export class FractalesComponent implements OnInit {
 
   constructor() {
     this.nivel=0; 
-    this.fractal='korch';
+    this.fractal='Snowflake Koch';
   }
 
   ngOnInit(): void {
@@ -30,12 +30,13 @@ export class FractalesComponent implements OnInit {
   onSiguientePaso(): void {
     this.clear();
     console.log(this.fractal);
-    if (this.fractal == 'Koch') {
-      this.drawKoch(this.width,this.nivel++);
-    } else if (this.fractal == 'Triangle') {
+    if (this.fractal == 'Triangle') {
       this.drawTriangleAngle(100);
-    }
-    
+    } if (this.fractal == 'Koch') {
+        this.drawKoch(this.width,this.nivel++);
+    } else if (this.fractal == 'Anti Snowflake Koch') {
+      this.drawAntiSnowflakeKoch(this.width/2,this.nivel++);
+    }    
   }
 
   onLimpiar(): void {
@@ -78,6 +79,18 @@ export class FractalesComponent implements OnInit {
       plotter.increaseAngle(60);
       this.drawKochInternal(plotter, sizeEfective, n-1);
     }
+  }
+
+  drawAntiSnowflakeKoch(side: number, n : number) {
+    const plotter = new Plotter(this.getContext2D());
+    plotter.start();
+    plotter.setPosition(0, this.width/2);
+    this.drawKochInternal(plotter, side, n);
+    plotter.increaseAngle(180-60);
+    this.drawKochInternal(plotter, side, n);
+    plotter.increaseAngle(180-60);
+    this.drawKochInternal(plotter, side, n); 
+    plotter.stop();
   }
 
   // ------------
