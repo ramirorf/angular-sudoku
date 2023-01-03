@@ -14,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { JuegoVidaComponent } from './juego-vida/juego-vida.component';
 import { SortComponent } from './sort/sort.component';
 import { FractalesComponent } from './fractales/fractales.component';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { FractalesComponent } from './fractales/fractales.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
     ],
   providers: [],
   bootstrap: [AppComponent]

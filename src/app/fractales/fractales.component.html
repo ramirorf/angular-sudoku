@@ -1,7 +1,14 @@
 
 
 <div>
-    <label for="nivel"> Numero {{nivel}} </label>
+    <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="fractal">
+          <mat-option value="Triangle">Triangle</mat-option>
+          <mat-option value="Koch">Koch</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <label for="nivel"> Numero {{nivel}} </label>
 </div>
 
 <div>
