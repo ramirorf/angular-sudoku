@@ -86,7 +86,7 @@ export class FractalesComponent implements OnInit {
   drawSnowflakeKoch(side: number, n : number) {
     const plotter = new Plotter(this.getContext2D());
     plotter.start();
-    plotter.setPosition(0, this.width/6);
+    plotter.setPosition(this.height/9, this.width/6);
     this.drawKochInternal(plotter, side, n);
     plotter.increaseAngle(-120);
     this.drawKochInternal(plotter, side, n);
