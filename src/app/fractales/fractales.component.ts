@@ -21,7 +21,7 @@ export class FractalesComponent implements OnInit {
 
   constructor() {
     this.nivel=0; 
-    this.fractal='Snowflake Koch';
+    this.fractal='Cesaro Puro';
   }
 
   ngOnInit(): void {
@@ -38,6 +38,10 @@ export class FractalesComponent implements OnInit {
       this.drawSnowflakeKoch(this.width/2,this.nivel++);
     } else if (this.fractal == 'Anti Snowflake Koch') {
       this.drawAntiSnowflakeKoch(this.width/2,this.nivel++);
+    } else if (this.fractal == 'Cesaro') {
+      this.drawCesaro(this.width/2,this.nivel++);
+    } else if (this.fractal == 'Cesaro Puro') {
+      this.drawCesaroPuro(this.width/2,this.nivel++);
     }    
 }
 
@@ -106,6 +110,46 @@ export class FractalesComponent implements OnInit {
     this.drawKochInternal(plotter, side, n); 
     plotter.stop();
   }
+
+  drawCesaro(side: number, n : number) {
+    const plotter = new Plotter(this.getContext2D());
+    plotter.start();
+    plotter.setPosition(this.height/9, this.width/1.9);
+    this.drawGenericInternal(plotter, side, n, 85);
+    plotter.increaseAngle(90);
+    this.drawGenericInternal(plotter, side, n, 85);
+    plotter.increaseAngle(90);
+    this.drawGenericInternal(plotter, side, n, 85); 
+    plotter.increaseAngle(90);
+    this.drawGenericInternal(plotter, side, n, 85); 
+    plotter.stop();
+  }
+
+  drawCesaroPuro(side: number, n : number) {
+    const plotter = new Plotter(this.getContext2D());
+    plotter.start();
+    plotter.setPosition(this.height/9, this.width/1.9);
+    this.drawGenericInternal(plotter, side, n, 85);
+    plotter.stop();
+  }
+
+
+  drawGenericInternal(plotter: Plotter, side: number, n : number, angle: number) {
+    if ( n == 0) {
+      plotter.draw(side,0);
+    } else {
+      const sizeEfective = side/2.05;
+      this.drawGenericInternal(plotter, sizeEfective, n-1, angle);
+      plotter.increaseAngle(angle);
+      this.drawGenericInternal(plotter, sizeEfective, n-1, angle);
+      plotter.increaseAngle(-angle*2);
+      this.drawGenericInternal(plotter, sizeEfective, n-1, angle);
+      plotter.increaseAngle(angle);
+      this.drawGenericInternal(plotter, sizeEfective, n-1, angle);
+    }
+  }
+
+
 
   // ------------
   // auxiliares
