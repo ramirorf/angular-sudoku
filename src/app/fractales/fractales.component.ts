@@ -39,7 +39,7 @@ export class FractalesComponent implements OnInit {
     } else if (this.fractal == 'Anti Snowflake Koch') {
       this.drawAntiSnowflakeKoch(this.width/2,this.nivel++);
     } else if (this.fractal == 'Cesaro') {
-      this.drawCesaro(this.width/2,this.nivel++);
+      this.drawCesaro(this.width/3,this.nivel++);
     } else if (this.fractal == 'Cesaro Puro') {
       this.drawCesaroPuro(this.width/2,this.nivel++);
     }    
