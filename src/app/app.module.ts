@@ -15,6 +15,8 @@ import { JuegoVidaComponent } from './juego-vida/juego-vida.component';
 import { SortComponent } from './sort/sort.component';
 import { FractalesComponent } from './fractales/fractales.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { PatronesComponent } from './patrones/patrones.component';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
     NasaApodComponent,
     JuegoVidaComponent,
     SortComponent,
-    FractalesComponent
+    FractalesComponent,
+    PatronesComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatExpansionModule
     ],
   providers: [],
   bootstrap: [AppComponent]
