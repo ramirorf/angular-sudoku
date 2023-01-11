@@ -4,9 +4,11 @@ import { Vehiculo } from "./vehiculo";
 
 export class CreadorMotocicleta implements CreadorVehiculo {
     
+    number : number = 0;
+
     public crear() {
-        console.log("creaando motocicleta...");
-        return new Motocicleta();
+        console.log("creaando coche "+this.number);
+        return new Motocicleta(""+this.number++);
     }
-    
+
 } 

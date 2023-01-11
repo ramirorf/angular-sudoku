@@ -16,6 +16,7 @@ import { SortComponent } from './sort/sort.component';
 import { FractalesComponent } from './fractales/fractales.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
 import { PatronesComponent } from './patrones/patrones.component';
 
 
@@ -39,7 +40,8 @@ import { PatronesComponent } from './patrones/patrones.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTableModule
     ],
   providers: [],
   bootstrap: [AppComponent]

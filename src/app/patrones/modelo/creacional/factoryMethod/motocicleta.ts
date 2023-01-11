@@ -9,7 +9,7 @@ export class Motocicleta implements Vehiculo {
     }
 
     public nombre() : string {
-        return "Motocicleta -> " + this.nombre;
+        return "Motocicleta -> " + this.nombre_;
     }
     
 } 
