@@ -6,6 +6,7 @@ import { NasaApodComponent } from './nasa-apod/nasa-apod.component';
 import { PatronesComponent } from './patrones/patrones.component';
 import { SortComponent } from './sort/sort.component';
 import { Sudoku1Component } from './sudoku1/sudoku1.component';
+import { PrimosComponent } from './primos/primos.component';
 
 const routes: Routes = [
   { path: 'sudoku1', component: Sudoku1Component },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'juego-vida', component: JuegoVidaComponent },
   { path: 'sort', component: SortComponent },
   { path: 'fractales', component: FractalesComponent },
-  { path: 'patrones', component: PatronesComponent }
+  { path: 'patrones', component: PatronesComponent },
+  { path: 'primos', component: PrimosComponent }
 ];
 
 @NgModule({

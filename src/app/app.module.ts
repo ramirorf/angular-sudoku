@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { PatronesComponent } from './patrones/patrones.component';
+import { PrimosComponent } from './primos/primos.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { PatronesComponent } from './patrones/patrones.component';
     JuegoVidaComponent,
     SortComponent,
     FractalesComponent,
-    PatronesComponent
+    PatronesComponent,
+    PrimosComponent
   ],
   imports: [
     BrowserModule,
