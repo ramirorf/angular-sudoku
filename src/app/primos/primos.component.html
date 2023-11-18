@@ -1,6 +1,15 @@
-<mat-form-field>
-       <mat-label>Número de primos</mat-label>
-        <input matInput  type="number" min="0" (change)="numeroChange($event)">
-</mat-form-field>
+<div>
+        <mat-form-field>
+                <mat-label>Número de primos</mat-label>
+                <input matInput type="number" min="0" (change)="numeroPrimosChange($event)">
+        </mat-form-field>
+        <p>Los primos utilizados son {{primos}}</p>
+</div>
+<div>
+        <mat-form-field>
+                <mat-label>Número a descomponer</mat-label>
+                <input matInput type="number" min="0" (change)="numeroDescomponerChange($event)">
+        </mat-form-field>
+        <p> su descomposión factorial es {{divisoresString}}</p>
+</div>
 
-<p>{{primos}}</p>
