@@ -4,9 +4,10 @@ import { Plotter } from './modelo/plotter';
 
 
 @Component({
-  selector: 'app-fractales',
-  templateUrl: './fractales.component.html',
-  styleUrls: ['./fractales.component.css']
+    selector: 'app-fractales',
+    templateUrl: './fractales.component.html',
+    styleUrls: ['./fractales.component.css'],
+    standalone: false
 })
 export class FractalesComponent implements OnInit {
 

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-juego-vida',
-  templateUrl: './juego-vida.component.html',
-  styleUrls: ['./juego-vida.component.css']
+    selector: 'app-juego-vida',
+    templateUrl: './juego-vida.component.html',
+    styleUrls: ['./juego-vida.component.css'],
+    standalone: false
 })
 export class JuegoVidaComponent implements OnInit {
 

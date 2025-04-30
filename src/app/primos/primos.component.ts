@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { MatInput } from '@angular/material/input';
 
 @Component({
-  selector: 'app-primos',
-  templateUrl: './primos.component.html',
-  styleUrls: ['./primos.component.css']
+    selector: 'app-primos',
+    templateUrl: './primos.component.html',
+    styleUrls: ['./primos.component.css'],
+    standalone: false
 })
 
 export class PrimosComponent {

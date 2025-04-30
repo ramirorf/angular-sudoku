@@ -6,9 +6,10 @@ import { SortCollectionService } from './servicio/sort-collection.service';
 import { SortResult } from './modelo/sortResult';
 
 @Component({
-  selector: 'app-sort',
-  templateUrl: './sort.component.html',
-  styleUrls: ['./sort.component.css']
+    selector: 'app-sort',
+    templateUrl: './sort.component.html',
+    styleUrls: ['./sort.component.css'],
+    standalone: false
 })
 
 export class SortComponent implements OnInit {

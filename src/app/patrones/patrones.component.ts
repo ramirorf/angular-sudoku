@@ -5,9 +5,10 @@ import { CreadorVehiculo } from './modelo/creacional/factoryMethod/creadorVehicu
 import { Vehiculo } from './modelo/creacional/factoryMethod/vehiculo';
 
 @Component({
-  selector: 'app-patrones',
-  templateUrl: './patrones.component.html',
-  styleUrls: ['./patrones.component.css']
+    selector: 'app-patrones',
+    templateUrl: './patrones.component.html',
+    styleUrls: ['./patrones.component.css'],
+    standalone: false
 })
 export class PatronesComponent {
 

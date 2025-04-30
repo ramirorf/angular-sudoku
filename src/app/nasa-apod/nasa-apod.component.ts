@@ -10,9 +10,10 @@ interface APOD {
 }
 
 @Component({
-  selector: 'app-nasa-apod',
-  templateUrl: './nasa-apod.component.html',
-  styleUrls: ['./nasa-apod.component.css']
+    selector: 'app-nasa-apod',
+    templateUrl: './nasa-apod.component.html',
+    styleUrls: ['./nasa-apod.component.css'],
+    standalone: false
 })
 export class NasaApodComponent implements OnInit {
 
