@@ -7,6 +7,7 @@ import { PatronesComponent } from './patrones/patrones.component';
 import { SortComponent } from './sort/sort.component';
 import { Sudoku1Component } from './sudoku1/sudoku1.component';
 import { PrimosComponent } from './primos/primos.component';
+import { JerarquiaComunicacionComponent } from './jerarquia-comunicacion/jerarquia-comunicacion.component';
 
 const routes: Routes = [
   { path: 'sudoku1', component: Sudoku1Component },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'sort', component: SortComponent },
   { path: 'fractales', component: FractalesComponent },
   { path: 'patrones', component: PatronesComponent },
-  { path: 'primos', component: PrimosComponent }
+  { path: 'primos', component: PrimosComponent },
+  { path: 'jerarquia-comunicacion', component: JerarquiaComunicacionComponent }
 ];
 
 @NgModule({

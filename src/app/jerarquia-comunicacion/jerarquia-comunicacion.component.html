@@ -1,0 +1,17 @@
+<p>Poligonos (contador {{contador}})</p>
+
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Lados</th>
+    </tr>
+    @for (poligono of poligonos; track $index) {
+        <tr>
+            <td>{{poligono.nombre}}</td>
+            <td>{{poligono.vertices}}</td>
+            <td></td>
+        </tr>
+    }
+</table>
+
+<app-jerarquia-comunicacion-hijo  (botonClicado)="manejarClicDelHijo()" [figura]="figura"></app-jerarquia-comunicacion-hijo>
