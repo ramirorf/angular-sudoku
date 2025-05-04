@@ -19,6 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { PatronesComponent } from './patrones/patrones.component';
 import { PrimosComponent } from './primos/primos.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { PrimosComponent } from './primos/primos.component';
     MatInputModule,
     MatSelectModule,
     MatExpansionModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

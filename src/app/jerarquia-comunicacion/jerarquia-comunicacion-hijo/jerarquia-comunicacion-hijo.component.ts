@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, input, model } from '@angular/core';
 
 @Component({
   selector: 'app-jerarquia-comunicacion-hijo',
@@ -8,14 +8,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class JerarquiaComunicacionHijoComponent {
 
+  // modo pre-signals
   @Input() figura : string = "";
 
   @Output() botonClicado = new EventEmitter<void>();
 
-  area: string = "desconocida";
-
   notificarAlPadre() {
     this.botonClicado.emit();
   }
+
+  area: string = "desconocida";
 
 }

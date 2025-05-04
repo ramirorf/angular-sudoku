@@ -1,4 +1,4 @@
-<p>Poligonos (contador {{contador}})</p>
+<p>Poligonos</p>
 
 <table>
     <tr>
@@ -14,4 +14,18 @@
     }
 </table>
 
-<app-jerarquia-comunicacion-hijo  (botonClicado)="manejarClicDelHijo()" [figura]="figura"></app-jerarquia-comunicacion-hijo>
+
+<p>Comunicación clásica (contador {{contador}})</p>
+<app-jerarquia-comunicacion-hijo [figura]="figuraPadre" (botonClicado)="manejarClicDelHijo()"></app-jerarquia-comunicacion-hijo>
+<br>
+<br>
+
+<p>Comunicación signals</p>
+<app-jerarquia-comunicacion-hijo-signals [figuraSignal]="figuraPadreSignal"></app-jerarquia-comunicacion-hijo-signals>
+<br>
+<br>
+
+<p>Comunicación signals "two ways" (contadorSignal {{contadorSignalPadre}})</p>
+<app-jerarquia-comunicacion-hijo-two-ways [(contadorSignal)]="contadorSignalPadre"></app-jerarquia-comunicacion-hijo-two-ways>
+<br>
+<br>
