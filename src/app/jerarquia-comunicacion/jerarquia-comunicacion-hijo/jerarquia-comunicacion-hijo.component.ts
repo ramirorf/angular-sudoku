@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output, input, model } from '@angular/core';
 
 @Component({
-  selector: 'app-jerarquia-comunicacion-hijo',
-  templateUrl: './jerarquia-comunicacion-hijo.component.html',
-  styleUrl: './jerarquia-comunicacion-hijo.component.css'
+    selector: 'app-jerarquia-comunicacion-hijo',
+    templateUrl: './jerarquia-comunicacion-hijo.component.html',
+    styleUrl: './jerarquia-comunicacion-hijo.component.css',
+    standalone: true
 })
 export class JerarquiaComunicacionHijoComponent {
 
