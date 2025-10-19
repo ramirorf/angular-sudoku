@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output, input, model } from '@angular/c
 
 @Component({
   selector: 'app-jerarquia-comunicacion-hijo-two-ways',
-  imports: [],
   templateUrl: './jerarquia-comunicacion-hijo-two-ways.component.html',
-  styleUrl: './jerarquia-comunicacion-hijo-two-ways.component.css'
+  styleUrl: './jerarquia-comunicacion-hijo-two-ways.component.css',
+  standalone : true
 })
 export class JerarquiaComunicacionHijoTwoWaysComponent {
 
