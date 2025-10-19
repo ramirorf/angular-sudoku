@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output, input, model } from '@angular/c
 
 @Component({
   selector: 'app-jerarquia-comunicacion-hijo-signals',
-  imports: [],
   templateUrl: './jerarquia-comunicacion-hijo-signals.component.html',
   styleUrl: './jerarquia-comunicacion-hijo-signals.component.css'
 })

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Sudoku1Component } from './sudoku1/sudoku1.component';
 import { NasaApodComponent } from './nasa-apod/nasa-apod.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -22,32 +22,25 @@ import { PrimosComponent } from './primos/primos.component';
 import { FormsModule } from '@angular/forms';
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    Sudoku1Component,
-    NasaApodComponent,
-    JuegoVidaComponent,
-    SortComponent,
-    FractalesComponent,
-    PatronesComponent,
-    PrimosComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatExpansionModule,
-    MatTableModule,
-    FormsModule
+@NgModule({ declarations: [
+        AppComponent,
+        Sudoku1Component,
+        NasaApodComponent,
+        JuegoVidaComponent,
+        SortComponent,
+        FractalesComponent,
+        PatronesComponent,
+        PrimosComponent
     ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatExpansionModule,
+        MatTableModule,
+        FormsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
