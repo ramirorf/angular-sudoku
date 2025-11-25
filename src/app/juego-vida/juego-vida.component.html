@@ -3,11 +3,14 @@
 <h3>tiempo del último paso {{tiempoUltimoPaso}} ms</h3>
 
 <div class="tabla">
-    <div class="fila" *ngFor="let fila of juegoVidaTablero">
-        <div *ngFor="let elemento of fila" [ngClass]="{'celda-muerta' : elemento == false , 'celda-viva': elemento == true}">
-            
+  @for (fila of juegoVidaTablero; track fila) {
+    <div class="fila">
+      @for (elemento of fila; track elemento) {
+        <div [ngClass]="{'celda-muerta' : elemento == false , 'celda-viva': elemento == true}">
         </div>
+      }
     </div>
+  }
 </div>
 
 <button (click)="onSiguientePaso()">Siguiente paso</button>
