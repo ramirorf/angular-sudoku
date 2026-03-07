@@ -33,7 +33,9 @@ export class FractalesComponent implements OnInit {
     console.log(this.fractal);
     if (this.fractal == 'Triangle') {
       this.drawTriangleAngle(100);
-    } if (this.fractal == 'Koch') {
+    } else if (this.fractal == 'Circle') {
+        this.drawCircle(this.width/4);
+    } else if (this.fractal == 'Koch') {
         this.drawKoch(this.width,this.nivel++);
     } else if (this.fractal == 'Snowflake Koch') {
       this.drawSnowflakeKoch(this.width/2,this.nivel++);
@@ -62,6 +64,17 @@ export class FractalesComponent implements OnInit {
     plotter.draw(side,0);
     plotter.draw(side,180-60);
     plotter.draw(side,180-60);
+    plotter.stop();
+  }
+
+  drawCircle(radius: number) {
+    const plotter = new Plotter(this.getContext2D());
+    plotter.start();
+    plotter.setPosition(0, this.width / 2);
+    const context = this.getContext2D();
+    context.beginPath();
+    context.arc(this.height / 2, this.width / 2, radius / 2, 0, 2 * Math.PI);
+    context.stroke();
     plotter.stop();
   }
 
