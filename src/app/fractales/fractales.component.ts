@@ -45,7 +45,9 @@ export class FractalesComponent implements OnInit {
       this.drawCesaro(this.width/3,this.nivel++);
     } else if (this.fractal == 'Cesaro Puro') {
       this.drawCesaroPuro(this.width/2,this.nivel++);
-    }    
+    } else if (this.fractal == 'Sierpinski Carpet') {
+      this.drawSierpinskiCarpet(this.nivel++);
+    }
 }
 
   onLimpiar(): void {
@@ -145,6 +147,29 @@ export class FractalesComponent implements OnInit {
     plotter.setPosition(this.height/9, this.width/1.9);
     this.drawGenericInternal(plotter, side, n, 85);
     plotter.stop();
+  }
+
+  drawSierpinskiCarpet(n: number) {
+    const context = this.getContext2D();
+    const size = Math.min(this.width, this.height) * 0.8;
+    const x = (this.width - size) / 2;
+    const y = (this.height - size) / 2;
+    this.drawSierpinskiCarpetInternal(context, x, y, size, n);
+  }
+
+  drawSierpinskiCarpetInternal(context: CanvasRenderingContext2D, x: number, y: number, size: number, n: number) {
+    if (n === 0) {
+      context.fillRect(x, y, size, size);
+    } else {
+      const newSize = size / 3;
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          if (!(i === 1 && j === 1)) { // Skip the center square
+            this.drawSierpinskiCarpetInternal(context, x + i * newSize, y + j * newSize, newSize, n - 1);
+          }
+        }
+      }
+    }
   }
 
 
