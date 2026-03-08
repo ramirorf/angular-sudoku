@@ -47,6 +47,8 @@ export class FractalesComponent implements OnInit {
       this.drawCesaroPuro(this.width/2,this.nivel++);
     } else if (this.fractal == 'Sierpinski Carpet') {
       this.drawSierpinskiCarpet(this.nivel++);
+    } else if (this.fractal == 'Julia') {
+      this.drawJulia();
     }
 }
 
@@ -170,6 +172,79 @@ export class FractalesComponent implements OnInit {
         }
       }
     }
+  }
+
+  drawJulia() {
+    const context = this.getContext2D();
+    const imageData = context.createImageData(this.width, this.height);
+    const data = imageData.data;
+
+    const c_real = -0.7;
+    const c_imag = 0.27015;
+    const max_iter = 100;
+    const min_real = -2.0;
+    const max_real = 2.0;
+    const min_imag = -1.25;
+    const max_imag = 1.25;
+
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        const z_real = (x / this.width) * (max_real - min_real) + min_real;
+        const z_imag = (y / this.height) * (max_imag - min_imag) + min_imag;
+
+        let iter = 0;
+        let zr = z_real;
+        let zi = z_imag;
+
+        while (zr * zr + zi * zi < 4 && iter < max_iter) {
+          const zr_temp = zr * zr - zi * zi + c_real;
+          zi = 2 * zr * zi + c_imag;
+          zr = zr_temp;
+          iter++;
+        }
+
+        const index = (y * this.width + x) * 4;
+        if (iter === max_iter) {
+          // Inside the set, black
+          data[index] = 0;
+          data[index + 1] = 0;
+          data[index + 2] = 0;
+          data[index + 3] = 255;
+        } else {
+          // Outside, color based on iterations
+          const hue = (iter / max_iter) * 360;
+          const color = this.hslToRgb(hue / 360, 1, 0.5);
+          data[index] = color[0];
+          data[index + 1] = color[1];
+          data[index + 2] = color[2];
+          data[index + 3] = 255;
+        }
+      }
+    }
+
+    context.putImageData(imageData, 0, 0);
+  }
+
+  private hslToRgb(h: number, s: number, l: number): [number, number, number] {
+    let r, g, b;
+    if (s === 0) {
+      r = g = b = l; // achromatic
+    } else {
+      const hue2rgb = (p: number, q: number, t: number) => {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1/6) return p + (q - p) * 6 * t;
+        if (t < 1/2) return q;
+        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+        return p;
+      };
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      const p = 2 * l - q;
+      r = hue2rgb(p, q, h + 1/3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1/3);
+    }
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
   }
 
 
