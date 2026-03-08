@@ -48,7 +48,7 @@ export class FractalesComponent implements OnInit {
     } else if (this.fractal == 'Sierpinski Carpet') {
       this.drawSierpinskiCarpet(this.nivel++);
     } else if (this.fractal == 'Julia') {
-      this.drawJulia();
+      this.drawJulia(this.nivel++);
     }
 }
 
@@ -174,14 +174,14 @@ export class FractalesComponent implements OnInit {
     }
   }
 
-  drawJulia() {
+  drawJulia(maxIter: number) {
     const context = this.getContext2D();
     const imageData = context.createImageData(this.width, this.height);
     const data = imageData.data;
 
     const c_real = -0.7;
     const c_imag = 0.27015;
-    const max_iter = 100;
+    const max_iter = maxIter;
     const min_real = -2.0;
     const max_real = 2.0;
     const min_imag = -1.25;
