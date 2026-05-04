@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-juego-vida',
     templateUrl: './juego-vida.component.html',
     styleUrls: ['./juego-vida.component.css'],
-    standalone: false,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule]
 })
 export class JuegoVidaComponent implements OnInit, OnDestroy {
 

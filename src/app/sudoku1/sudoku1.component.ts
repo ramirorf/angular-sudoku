@@ -9,8 +9,9 @@ import { SudokuServiceService } from './servicio/sudoku-service.service';
     selector: 'app-sudoku1',
     templateUrl: './sudoku1.component.html',
     styleUrls: ['./sudoku1.component.css'],
-    standalone: false,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: []
 })
 
 export class Sudoku1Component implements OnInit {

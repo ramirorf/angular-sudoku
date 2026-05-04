@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, LOCALE_ID, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { CommonModule, formatDate } from '@angular/common';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { formatDate } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { Observable } from 'rxjs';
 
 interface APOD {
@@ -14,19 +17,16 @@ interface APOD {
     selector: 'app-nasa-apod',
     templateUrl: './nasa-apod.component.html',
     styleUrls: ['./nasa-apod.component.css'],
-    standalone: false,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule]
 })
 export class NasaApodComponent implements OnInit {
 
-  static URL_BASE : string ="https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
-
-  profileForm = new FormGroup({
-    date: new FormControl(''),
-  });
+  static URL_BASE = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
 
   apod$!: Observable<APOD>;
-  date : Date = new Date();
+  date: Date = new Date();
 
   constructor(private http: HttpClient, @Inject(LOCALE_ID) private locale: string) { }
 
@@ -35,14 +35,14 @@ export class NasaApodComponent implements OnInit {
   }
 
   dateChange(event: MatDatepickerInputEvent<Date>) {
-    if( event.value != null) {
+    if (event.value != null) {
       this.consultar(event.value);
     }
   }
 
   consultar(date: Date) {
     let url: string = NasaApodComponent.URL_BASE;
-    if(date != null) {
+    if (date != null) {
       url = `${url}&date=${formatDate(date, "yyyy-MM-dd", this.locale)}`;
     }
     this.apod$ = this.http.get<APOD>(url);

@@ -1,14 +1,16 @@
-
 import { Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Plotter } from './modelo/plotter';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @Component({
     selector: 'app-fractales',
     templateUrl: './fractales.component.html',
     styleUrls: ['./fractales.component.css'],
-    standalone: false,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatFormFieldModule, MatSelectModule]
 })
 export class FractalesComponent implements OnInit {
 

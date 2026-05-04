@@ -9,8 +9,9 @@ import { SortResult } from './modelo/sortResult';
     selector: 'app-sort',
     templateUrl: './sort.component.html',
     styleUrls: ['./sort.component.css'],
-    standalone: false,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: []
 })
 
 export class SortComponent implements OnInit {

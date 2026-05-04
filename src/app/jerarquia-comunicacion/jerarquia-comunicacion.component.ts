@@ -6,6 +6,7 @@ import { JerarquiaComunicacionHijoTwoWaysComponent } from './jerarquia-comunicac
 
 @Component({
   selector: 'app-jerarquia-comunicacion',
+  standalone: true,
   imports: [JerarquiaComunicacionHijoComponent,
             JerarquiaComunicacionHijoSignalsComponent,
             JerarquiaComunicacionHijoTwoWaysComponent],
