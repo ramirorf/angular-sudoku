@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
@@ -13,18 +13,13 @@ import { MatInputModule } from '@angular/material/input';
 
 export class PrimosComponent {
 
-  primosArray: number[];
-  primos: string;
-  divisoresString: string = "";
-
-  constructor() {
-    this.primos = "";
-    this.primosArray = [2];
-  }
+  primosArray: number[] = [2];
+  primos = signal('');
+  divisoresString = signal('');
 
   numeroPrimosChange(event: any) {
     if (event.target.value != null) {
-      this.primos = this.calcularPrimos(event.target.value);
+      this.primos.set(this.calcularPrimos(event.target.value));
     }
   }
 
@@ -32,84 +27,67 @@ export class PrimosComponent {
     if (event.target.value != null) {
       let numero = event.target.value;
       let divisores = this.descomponer(numero);
-      
-      // convertir los factores en texto
-      this.divisoresString = "";
+
+      let result = '';
       divisores.forEach((value: number, key: number) => {
-        if (this.divisoresString == "") {
-          this.divisoresString += key + "^" + value;
+        if (result == '') {
+          result += key + '^' + value;
         } else {
-          this.divisoresString += " + " +key + "^" + value;
+          result += ' + ' + key + '^' + value;
         }
       });
-      this.divisoresString = " \( " + this.divisoresString + " \) ";
-      /*
-      let divisores = new Map<number, number>();
-      let currentPrimoCandidato = 0;      
-      do {
-        let primoCandidato =  obtenerSiguentePrimo(currentPrimoCandidato); 
-        numero = numero;
-        currentPrimoCandidato++; 
-      } while(numero % obtenerSiguentePrimo(currentPrimoCandidato) == 0) {
-      */
-
-      //this.primos = this.calcularPrimos(event.target.value);
+      this.divisoresString.set(' \\( ' + result + ' \\) ');
     }
   }
 
-  descomponer ( number : number) : Map<number, number> {
+  descomponer(number: number): Map<number, number> {
     let divisores = new Map<number, number>();
-    let currentPrimoCandidato = 0;      
+    let currentPrimoCandidato = 0;
 
-   do {
-    let primo = this.primosArray[currentPrimoCandidato];
-    let contador = 0;
-    while ( number != 1 && number % primo == 0) {
-      number = number / primo;
-      contador++;  
-    }
-    if (contador > 0) {
-      divisores.set(primo,contador);       
-    }
+    do {
+      let primo = this.primosArray[currentPrimoCandidato];
+      let contador = 0;
+      while (number != 1 && number % primo == 0) {
+        number = number / primo;
+        contador++;
+      }
+      if (contador > 0) {
+        divisores.set(primo, contador);
+      }
 
-    currentPrimoCandidato++;
-    this.inicializarPrimosArray(this.primosArray, currentPrimoCandidato+1);
-   } while( number != 1);
+      currentPrimoCandidato++;
+      this.inicializarPrimosArray(this.primosArray, currentPrimoCandidato + 1);
+    } while (number != 1);
 
-   return divisores;
-   /*
-    divisores.set(2,2);
-    divisores.set(3,2);
     return divisores;
-    */
   }
 
   calcularPrimos(number: number): string {
     this.inicializarPrimosArray(this.primosArray, number);
-    return this.primosArray.slice(0,number).toString();
+    return this.primosArray.slice(0, number).toString();
   }
 
   inicializarPrimosArray(primosArray: number[], primoNumber: number) {
     if (primoNumber > 0) {
-      while (primosArray.length < primoNumber ) {
-        primosArray.push(this.siguientePrimo(primosArray, primosArray[primosArray.length-1]))
-      }      
+      while (primosArray.length < primoNumber) {
+        primosArray.push(this.siguientePrimo(primosArray, primosArray[primosArray.length - 1]))
+      }
     }
   }
 
   siguientePrimo(primosArray: number[], primoAnterior: number): number {
-    let i=primoAnterior+1;
-    for(;!this.esPrimo(primosArray, i);i++) {}
+    let i = primoAnterior + 1;
+    for (; !this.esPrimo(primosArray, i); i++) { }
     return i;
- }
-
- esPrimo(primosArray: number[], primoPosible: number): boolean {
-  for(let i=0;i!=primosArray.length;i++) {
-    if ( primoPosible % primosArray[i] == 0 ) {
-      return false;
-    }
   }
-  return true;
- } 
+
+  esPrimo(primosArray: number[], primoPosible: number): boolean {
+    for (let i = 0; i != primosArray.length; i++) {
+      if (primoPosible % primosArray[i] == 0) {
+        return false;
+      }
+    }
+    return true;
+  }
 
 }

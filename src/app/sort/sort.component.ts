@@ -19,50 +19,44 @@ export class SortComponent implements OnInit {
   readonly SIZE = 500;
   readonly MAX_VALUE = 10_000;
 
-  sortResults : SortResult[];
-  values : Collection<number>;
-  valuesString : string;
+  sortResults: SortResult[] = [];
+  values!: Collection<number>;
+  valuesString: string = '';
 
-  constructor(private sortCollectionService : SortCollectionService) { 
+  constructor(private sortCollectionService: SortCollectionService) { }
 
-    // generar un array (y con él una collección) con números aleatorios de tamaño SIZE y con valor máximo MAX_VALUE
-    let valuesArray : number[] = Array.from({length: this.SIZE}, () => Math.floor(Math.random() *this.MAX_VALUE));
+  ngOnInit(): void {
+    let valuesArray: number[] = Array.from({ length: this.SIZE }, () => Math.floor(Math.random() * this.MAX_VALUE));
     this.values = new CollectionArrays<number>(valuesArray);
     this.valuesString = this.values.getAll();
 
-    // lista de rutinas de ordenación 
     type SortRutine = {
-      name : string,
-      method: (collection : Collection<number>) => Collection<number>
+      name: string,
+      method: (collection: Collection<number>) => Collection<number>
     };
 
-    let sortRutines : SortRutine[] = [
-      {name : "bubble", method : sortCollectionService.bubble},
-      {name : "bubbleImproved", method : sortCollectionService.bubbleImproved},
-      {name : "selection", method : sortCollectionService.selection},
-      {name : "insertion", method : sortCollectionService.insertion},
-      {name : "mergeSort", method : sortCollectionService.mergeSort},
-      {name : "quickSort", method : SortCollectionService.quickSort}
+    let sortRutines: SortRutine[] = [
+      { name: "bubble", method: this.sortCollectionService.bubble },
+      { name: "bubbleImproved", method: this.sortCollectionService.bubbleImproved },
+      { name: "selection", method: this.sortCollectionService.selection },
+      { name: "insertion", method: this.sortCollectionService.insertion },
+      { name: "mergeSort", method: this.sortCollectionService.mergeSort },
+      { name: "quickSort", method: SortCollectionService.quickSort }
     ];
 
-    // ejecutar las ordenaciones y tomar tiempos
-    this.sortResults = [];
-    sortRutines.forEach( sortRutine => {
-      this.sortResults.push(SortComponent.sort( 
-        sortRutine.method , 
-        this.values.clone() , 
+    sortRutines.forEach(sortRutine => {
+      this.sortResults.push(SortComponent.sort(
+        sortRutine.method,
+        this.values.clone(),
         sortRutine.name));
     })
   }
 
-  ngOnInit(): void {
-  }
-
-  static sort( sortMethod : (collection : Collection<number>) => Collection<number>, values : Collection<number>, description: string) {
-    const inicio : number = performance.now();
+  static sort(sortMethod: (collection: Collection<number>) => Collection<number>, values: Collection<number>, description: string) {
+    const inicio: number = performance.now();
     const valuesSorted = sortMethod(values);
-    const fin : number = performance.now();
-    const tiempo = Math.round((fin-inicio) * 100) / 100;
+    const fin: number = performance.now();
+    const tiempo = Math.round((fin - inicio) * 100) / 100;
 
     return new SortResult(description, valuesSorted.getAll(), tiempo);
   }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy, signal } from '@angular/core';
 import { Plotter } from './modelo/plotter';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -14,49 +14,51 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class FractalesComponent implements OnInit {
 
-  // canvas
-  @ViewChild ('canvas', {static : true}) myCanvas! : ElementRef;
-  height : number = 500;
-  width : number = 800;
+  @ViewChild('canvas', { static: true }) myCanvas!: ElementRef;
+  height: number = 500;
+  width: number = 800;
 
-  // otros datos
-  fractal : string;
-  nivel : number;
-
-  constructor() {
-    this.nivel=0; 
-    this.fractal='Cesaro Puro';
-  }
+  fractal = signal('Cesaro Puro');
+  nivel = signal(0);
 
   ngOnInit(): void {
   }
 
   onSiguientePaso(): void {
     this.clear();
-    console.log(this.fractal);
-    if (this.fractal == 'Triangle') {
+    const fractal = this.fractal();
+    const nivelActual = this.nivel();
+    console.log(fractal);
+    if (fractal == 'Triangle') {
       this.drawTriangleAngle(100);
-    } else if (this.fractal == 'Circle') {
-        this.drawCircle(this.width/4);
-    } else if (this.fractal == 'Koch') {
-        this.drawKoch(this.width,this.nivel++);
-    } else if (this.fractal == 'Snowflake Koch') {
-      this.drawSnowflakeKoch(this.width/2,this.nivel++);
-    } else if (this.fractal == 'Anti Snowflake Koch') {
-      this.drawAntiSnowflakeKoch(this.width/2,this.nivel++);
-    } else if (this.fractal == 'Cesaro') {
-      this.drawCesaro(this.width/3,this.nivel++);
-    } else if (this.fractal == 'Cesaro Puro') {
-      this.drawCesaroPuro(this.width/2,this.nivel++);
-    } else if (this.fractal == 'Sierpinski Carpet') {
-      this.drawSierpinskiCarpet(this.nivel++);
-    } else if (this.fractal == 'Julia') {
-      this.drawJulia(this.nivel++);
+    } else if (fractal == 'Circle') {
+      this.drawCircle(this.width / 4);
+    } else if (fractal == 'Koch') {
+      this.drawKoch(this.width, nivelActual);
+      this.nivel.update(n => n + 1);
+    } else if (fractal == 'Snowflake Koch') {
+      this.drawSnowflakeKoch(this.width / 2, nivelActual);
+      this.nivel.update(n => n + 1);
+    } else if (fractal == 'Anti Snowflake Koch') {
+      this.drawAntiSnowflakeKoch(this.width / 2, nivelActual);
+      this.nivel.update(n => n + 1);
+    } else if (fractal == 'Cesaro') {
+      this.drawCesaro(this.width / 3, nivelActual);
+      this.nivel.update(n => n + 1);
+    } else if (fractal == 'Cesaro Puro') {
+      this.drawCesaroPuro(this.width / 2, nivelActual);
+      this.nivel.update(n => n + 1);
+    } else if (fractal == 'Sierpinski Carpet') {
+      this.drawSierpinskiCarpet(nivelActual);
+      this.nivel.update(n => n + 1);
+    } else if (fractal == 'Julia') {
+      this.drawJulia(nivelActual);
+      this.nivel.update(n => n + 1);
     }
-}
+  }
 
   onLimpiar(): void {
-    this.nivel=0;
+    this.nivel.set(0);
     this.clear();
   }
 

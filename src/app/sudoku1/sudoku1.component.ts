@@ -1,9 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-
+import { Component, OnInit, ChangeDetectionStrategy, signal, computed } from '@angular/core';
 import { SUDOKU_MOCK, SUDOKU_MOK1_SDK } from './modelo/mock-sudoku';
-
 import { Sudoku } from './modelo/sudoku';
-import { SudokuServiceService } from './servicio/sudoku-service.service';
+import { SudokuService } from './servicio/sudoku.service';
 
 @Component({
     selector: 'app-sudoku1',
@@ -16,32 +14,34 @@ import { SudokuServiceService } from './servicio/sudoku-service.service';
 
 export class Sudoku1Component implements OnInit {
 
-  sudokuArray : Sudoku[] = [];
-  paso : number = 0;
-  sudoku : Sudoku;
+  sudokuArray = signal<Sudoku[]>([]);
+  paso = signal(0);
+  sudoku = computed(() => this.sudokuArray()[this.paso()]);
 
-  constructor(private sudokuServiceService : SudokuServiceService) {
-    this.sudoku =  this.sudokuServiceService.newFromSDK(SUDOKU_MOK1_SDK);
-    this.sudokuArray.push(this.sudoku);
- }
+  constructor(private sudokuService: SudokuService) { }
 
   ngOnInit(): void {
+    const initial = this.sudokuService.newFromSDK(SUDOKU_MOK1_SDK);
+    this.sudokuArray.set([initial]);
   }
 
   onAnteriorPaso(): void {
-    if (this.paso > 0) {
-      this.paso--;
-      this.sudoku = this.sudokuArray[this.paso];
+    const pasoActual = this.paso();
+    if (pasoActual > 0) {
+      this.paso.set(pasoActual - 1);
     }
   }
 
   onSiguientePaso(): void {
-    this.paso++;
-    if (this.paso < this.sudokuArray.length) {
-      this.sudoku = this.sudokuArray[this.paso];  
+    const pasoActual = this.paso();
+    const array = this.sudokuArray();
+    const siguiente = pasoActual + 1;
+    if (siguiente < array.length) {
+      this.paso.set(siguiente);
     } else {
-      this.sudoku = this.sudokuServiceService.siguiente(this.sudoku);  
-      this.sudokuArray.push(this.sudoku);
+      const siguienteSudoku = this.sudokuService.siguiente(array[array.length - 1]);
+      this.sudokuArray.set([...array, siguienteSudoku]);
+      this.paso.set(siguiente);
     }
   }
 

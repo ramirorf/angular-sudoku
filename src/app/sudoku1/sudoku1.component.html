@@ -1,8 +1,8 @@
 
-<h3>Sudoku versión {{paso}}</h3>
+<h3>Sudoku versión {{paso()}}</h3>
 
 <div class="tabla">
-  @for (fila of sudoku.celdas; track fila) {
+  @for (fila of sudoku().celdas; track fila) {
     <div class="fila">
       @for (celda of fila; track celda) {
         <div class="celda">

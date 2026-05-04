@@ -1,9 +1,8 @@
 
-
 <div>
     <mat-form-field appearance="fill">
         <mat-label>Select an option</mat-label>
-        <mat-select [(value)]="fractal">
+        <mat-select [value]="fractal()" (valueChange)="fractal.set($event)">
           <mat-option value="Triangle">Triangle</mat-option>
           <mat-option value="Circle">Circle</mat-option>
           <mat-option value="Koch">Koch</mat-option>
@@ -15,7 +14,7 @@
           <mat-option value="Julia">Julia</mat-option>
         </mat-select>
       </mat-form-field>
-      <label for="nivel"> Numero {{nivel}} </label>
+      <label for="nivel"> Numero {{nivel()}} </label>
 </div>
 
 <div>
