@@ -26,7 +26,6 @@ export class NasaApodComponent implements OnInit {
   static URL_BASE = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
 
   apod$!: Observable<APOD>;
-  date: Date = new Date();
 
   constructor(private http: HttpClient, @Inject(LOCALE_ID) private locale: string) { }
 

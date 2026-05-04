@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { AppNavbarComponent } from './shared/app-navbar/app-navbar.component';
 
 @Component({
     selector: 'app-root',
@@ -7,7 +8,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     styleUrls: ['./app.component.css'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, RouterOutlet]
+    imports: [RouterOutlet, AppNavbarComponent]
 })
 export class AppComponent {
   title = 'angular-sudoku';

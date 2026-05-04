@@ -115,14 +115,14 @@ export class SortCollectionService {
         const pivote : T = SortCollectionService.getQuickSortPivote(collection);
 
         // construir subcolecciones
-        let arrayLeft : T[] = [];
-        let arrayRight : T[] = [];
-        let contador : number = 0;
-        for(let i=0 ;i!= collection.size(); i++) {
-            const current : T = collection.get(i);
+        let arrayLeft: T[] = [];
+        let arrayRight: T[] = [];
+        let contador: number = 0;
+        for (let i = 0; i < collection.size(); i++) {
+            const current: T = collection.get(i);
             if (current < pivote) {
                 arrayLeft.push(current);
-            }  else if (current > pivote) {
+            } else if (current > pivote) {
                 arrayRight.push(current);
             } else {
                 contador++;
@@ -131,10 +131,7 @@ export class SortCollectionService {
 
         // reordenar la subcolecciones
         const collectionLeft = new CollectionArrays(arrayLeft);
-        console.log("left -> " + collectionLeft.getAll())
-
         const collectionRight = new CollectionArrays(arrayRight);
-        console.log("right -> " + collectionRight.getAll())
 
         const collectionLeftQuickSorted = SortCollectionService.quickSort(new CollectionArrays(arrayLeft));
         const collectionRightQuickSorted = SortCollectionService.quickSort(new CollectionArrays(arrayRight));
