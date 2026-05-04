@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Poligono } from './model/poligono';
 import { JerarquiaComunicacionHijoComponent } from "./jerarquia-comunicacion-hijo/jerarquia-comunicacion-hijo.component";
 import { JerarquiaComunicacionHijoSignalsComponent } from './jerarquia-comunicacion-hijo-signals/jerarquia-comunicacion-hijo-signals.component';
@@ -10,7 +10,8 @@ import { JerarquiaComunicacionHijoTwoWaysComponent } from './jerarquia-comunicac
             JerarquiaComunicacionHijoSignalsComponent,
             JerarquiaComunicacionHijoTwoWaysComponent],
   templateUrl: './jerarquia-comunicacion.component.html',
-  styleUrl: './jerarquia-comunicacion.component.css'
+  styleUrl: './jerarquia-comunicacion.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JerarquiaComunicacionComponent  implements OnInit {
 

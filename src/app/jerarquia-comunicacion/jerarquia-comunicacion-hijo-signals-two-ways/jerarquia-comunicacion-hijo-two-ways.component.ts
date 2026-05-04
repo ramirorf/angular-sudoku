@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output, input, model } from '@angular/core';
+import { Component, EventEmitter, Input, Output, input, model, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-jerarquia-comunicacion-hijo-two-ways',
   templateUrl: './jerarquia-comunicacion-hijo-two-ways.component.html',
   styleUrl: './jerarquia-comunicacion-hijo-two-ways.component.css',
-  standalone : true
+  standalone : true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JerarquiaComunicacionHijoTwoWaysComponent {
 

@@ -14,4 +14,4 @@
 </div>
 
 <button (click)="onSiguientePaso()">Siguiente paso</button>
-<button (click)="onSiguientePasoAutomatico()">Pasos automaticos</button>
+<button (click)="onSiguientePasoAutomatico()">{{isAutomaticoPasoRunning ? 'Detener pasos automáticos' : 'Pasos automáticos'}}</button>

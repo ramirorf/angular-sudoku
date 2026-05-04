@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CreadorCoche } from './modelo/creacional/factoryMethod/creadorCoche';
 import { CreadorMotocicleta } from './modelo/creacional/factoryMethod/creadorMotocicleta';
 import { CreadorVehiculo } from './modelo/creacional/factoryMethod/creadorVehiculo';
@@ -8,7 +8,8 @@ import { Vehiculo } from './modelo/creacional/factoryMethod/vehiculo';
     selector: 'app-patrones',
     templateUrl: './patrones.component.html',
     styleUrls: ['./patrones.component.css'],
-    standalone: false
+    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PatronesComponent {
 

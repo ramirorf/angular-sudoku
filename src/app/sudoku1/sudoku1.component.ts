@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { SUDOKU_MOCK, SUDOKU_MOK1_SDK } from './modelo/mock-sudoku';
 
@@ -9,7 +9,8 @@ import { SudokuServiceService } from './servicio/sudoku-service.service';
     selector: 'app-sudoku1',
     templateUrl: './sudoku1.component.html',
     styleUrls: ['./sudoku1.component.css'],
-    standalone: false
+    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class Sudoku1Component implements OnInit {

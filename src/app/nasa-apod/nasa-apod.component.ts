@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { formatDate } from '@angular/common';
+import { Observable } from 'rxjs';
 
 interface APOD {
   title: string;
@@ -13,7 +14,8 @@ interface APOD {
     selector: 'app-nasa-apod',
     templateUrl: './nasa-apod.component.html',
     styleUrls: ['./nasa-apod.component.css'],
-    standalone: false
+    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NasaApodComponent implements OnInit {
 
@@ -23,15 +25,13 @@ export class NasaApodComponent implements OnInit {
     date: new FormControl(''),
   });
 
-  apod : APOD = {url:"", title:""};
+  apod$!: Observable<APOD>;
   date : Date = new Date();
 
   constructor(private http: HttpClient, @Inject(LOCALE_ID) private locale: string) { }
 
   ngOnInit(): void {
-    this.http.get<APOD>(NasaApodComponent.URL_BASE).subscribe((apod : APOD) => {
-      this.apod=apod;
-    });
+    this.apod$ = this.http.get<APOD>(NasaApodComponent.URL_BASE);
   }
 
   dateChange(event: MatDatepickerInputEvent<Date>) {
@@ -45,9 +45,7 @@ export class NasaApodComponent implements OnInit {
     if(date != null) {
       url = `${url}&date=${formatDate(date, "yyyy-MM-dd", this.locale)}`;
     }
-    this.http.get<APOD>(url).subscribe((apod : APOD) => {
-      this.apod=apod;
-    });
+    this.apod$ = this.http.get<APOD>(url);
   }
 
 }

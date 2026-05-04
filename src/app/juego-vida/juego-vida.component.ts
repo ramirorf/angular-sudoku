@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 @Component({
     selector: 'app-juego-vida',
     templateUrl: './juego-vida.component.html',
     styleUrls: ['./juego-vida.component.css'],
-    standalone: false
+    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class JuegoVidaComponent implements OnInit {
+export class JuegoVidaComponent implements OnInit, OnDestroy {
 
   TABLERO_SIZE : number = 100; 
 
@@ -14,11 +15,19 @@ export class JuegoVidaComponent implements OnInit {
 
   paso : number = 0;
   tiempoUltimoPaso: number = 0;
+  isAutomaticoPasoRunning : boolean = false;
+  automaticoPasoTimeoutId: any = null;
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
       this.juegoVidaTablero = this.intTableroPrimerCañon(this.TABLERO_SIZE);
+  }
+
+  ngOnDestroy(): void {
+    if (this.automaticoPasoTimeoutId !== null) {
+      clearTimeout(this.automaticoPasoTimeoutId);
+    }
   }
 
   onSiguientePaso(): void {
@@ -27,13 +36,28 @@ export class JuegoVidaComponent implements OnInit {
     let pasoFin : number = performance.now();
     this.tiempoUltimoPaso = Math.round((pasoFin-pasoInicio) * 100) / 100;
     this.paso++;
+    this.cdr.markForCheck();
   }
 
   onSiguientePasoAutomatico():void{
-    setTimeout(() => {
+    if (this.isAutomaticoPasoRunning) {
+      this.isAutomaticoPasoRunning = false;
+      if (this.automaticoPasoTimeoutId !== null) {
+        clearTimeout(this.automaticoPasoTimeoutId);
+        this.automaticoPasoTimeoutId = null;
+      }
+      return;
+    }
+    
+    this.isAutomaticoPasoRunning = true;
+    const executeAutomaticPaso = () => {
+      if (!this.isAutomaticoPasoRunning) {
+        return;
+      }
       this.onSiguientePaso();
-      this.onSiguientePasoAutomatico();
-    }, 100);  
+      this.automaticoPasoTimeoutId = setTimeout(executeAutomaticPaso, 100);
+    };
+    executeAutomaticPaso();
   }
 
   intTablero(size : number) {

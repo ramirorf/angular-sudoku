@@ -3,7 +3,7 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
-<p>{{apod.title}}</p>
-<img src="{{apod.url}}" height="500" />
+<p>{{(apod$ | async)?.title}}</p>
+<img [src]="(apod$ | async)?.url" height="500" />
 
 

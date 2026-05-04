@@ -1,5 +1,5 @@
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Plotter } from './modelo/plotter';
 
 
@@ -7,7 +7,8 @@ import { Plotter } from './modelo/plotter';
     selector: 'app-fractales',
     templateUrl: './fractales.component.html',
     styleUrls: ['./fractales.component.css'],
-    standalone: false
+    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FractalesComponent implements OnInit {
 

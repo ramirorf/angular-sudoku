@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { Collection } from './modelo/collection';
 import { CollectionArrays } from './modelo/colectionArray';
@@ -9,7 +9,8 @@ import { SortResult } from './modelo/sortResult';
     selector: 'app-sort',
     templateUrl: './sort.component.html',
     styleUrls: ['./sort.component.css'],
-    standalone: false
+    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class SortComponent implements OnInit {
