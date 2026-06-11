@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Poligono } from './model/poligono';
 import { JerarquiaComunicacionHijoComponent } from "./jerarquia-comunicacion-hijo/jerarquia-comunicacion-hijo.component";
 import { JerarquiaComunicacionHijoSignalsComponent } from './jerarquia-comunicacion-hijo-signals/jerarquia-comunicacion-hijo-signals.component';
@@ -14,7 +14,7 @@ import { JerarquiaComunicacionHijoTwoWaysComponent } from './jerarquia-comunicac
   styleUrl: './jerarquia-comunicacion.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class JerarquiaComunicacionComponent  implements OnInit {
+export class JerarquiaComunicacionComponent {
 
   figuraPadre: string = "poligono";
   figuraPadreSignal: string = "circulo";
@@ -27,11 +27,8 @@ export class JerarquiaComunicacionComponent  implements OnInit {
     {nombre: "pentágono", vertices: 4}
   ];
 
-  ngOnInit(): void {
-  }
-
   manejarClicDelHijo(){
     this.contador++;
   }
-   
+
 }
