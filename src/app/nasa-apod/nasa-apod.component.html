@@ -4,6 +4,6 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 <p>{{(apod$ | async)?.title}}</p>
-<img [src]="(apod$ | async)?.url" height="500" />
+<img [src]="$safeNavigationMigration((apod$ | async)?.url)" height="500" />
 
 
