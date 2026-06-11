@@ -7,7 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 @Component({
     selector: 'app-fractales',
     templateUrl: './fractales.component.html',
-    styleUrls: ['./fractales.component.css'],
+    styleUrl: './fractales.component.css',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatFormFieldModule, MatSelectModule]

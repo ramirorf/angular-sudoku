@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 @Component({
     selector: 'app-juego-vida',
     templateUrl: './juego-vida.component.html',
-    styleUrls: ['./juego-vida.component.css'],
+    styleUrl: './juego-vida.component.css',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CommonModule]

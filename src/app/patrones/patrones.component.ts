@@ -9,7 +9,7 @@ import { Vehiculo } from './modelo/creacional/factoryMethod/vehiculo';
 @Component({
     selector: 'app-patrones',
     templateUrl: './patrones.component.html',
-    styleUrls: ['./patrones.component.css'],
+    styleUrl: './patrones.component.css',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatExpansionModule, MatTableModule]

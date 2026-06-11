@@ -8,7 +8,7 @@ import { SortResult } from './modelo/sortResult';
 @Component({
     selector: 'app-sort',
     templateUrl: './sort.component.html',
-    styleUrls: ['./sort.component.css'],
+    styleUrl: './sort.component.css',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: []

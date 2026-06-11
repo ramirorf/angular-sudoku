@@ -6,7 +6,7 @@ import { SudokuService } from './servicio/sudoku.service';
 @Component({
     selector: 'app-sudoku1',
     templateUrl: './sudoku1.component.html',
-    styleUrls: ['./sudoku1.component.css'],
+    styleUrl: './sudoku1.component.css',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: []

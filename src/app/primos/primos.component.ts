@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
     selector: 'app-primos',
     templateUrl: './primos.component.html',
-    styleUrls: ['./primos.component.css'],
+    styleUrl: './primos.component.css',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatFormFieldModule, MatInputModule]

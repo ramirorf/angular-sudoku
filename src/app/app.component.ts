@@ -5,7 +5,7 @@ import { AppNavbarComponent } from './shared/app-navbar/app-navbar.component';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrl: './app.component.css',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet, AppNavbarComponent]

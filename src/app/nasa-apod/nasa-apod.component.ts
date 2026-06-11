@@ -16,7 +16,7 @@ interface APOD {
 @Component({
     selector: 'app-nasa-apod',
     templateUrl: './nasa-apod.component.html',
-    styleUrls: ['./nasa-apod.component.css'],
+    styleUrl: './nasa-apod.component.css',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CommonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule]
