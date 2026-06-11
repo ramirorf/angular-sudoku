@@ -8,7 +8,7 @@ describe('FractalesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FractalesComponent ]
+      imports: [ FractalesComponent ]
     })
     .compileComponents();
   });

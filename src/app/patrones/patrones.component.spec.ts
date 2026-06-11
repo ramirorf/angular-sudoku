@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {MatExpansionModule} from '@angular/material/expansion';
 
 import { PatronesComponent } from './patrones.component';
 
@@ -9,7 +8,7 @@ describe('PatronesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PatronesComponent ]
+      imports: [ PatronesComponent ]
     })
     .compileComponents();
 

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 import { NasaApodComponent } from './nasa-apod.component';
 
@@ -8,7 +9,8 @@ describe('NasaApodComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NasaApodComponent ]
+      imports: [ NasaApodComponent ],
+      providers: [ provideHttpClient() ]
     })
     .compileComponents();
   });

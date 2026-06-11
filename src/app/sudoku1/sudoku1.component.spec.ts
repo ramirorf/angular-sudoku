@@ -8,7 +8,7 @@ describe('Sudoku1Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Sudoku1Component ]
+      imports: [ Sudoku1Component ]
     })
     .compileComponents();
   });

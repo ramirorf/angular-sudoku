@@ -8,7 +8,7 @@ describe('PrimosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrimosComponent ]
+      imports: [ PrimosComponent ]
     })
     .compileComponents();
 

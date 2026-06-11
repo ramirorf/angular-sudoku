@@ -8,7 +8,7 @@ describe('SortComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SortComponent ]
+      imports: [ SortComponent ]
     })
     .compileComponents();
   });
